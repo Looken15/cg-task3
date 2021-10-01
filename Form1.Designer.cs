@@ -36,6 +36,8 @@ namespace task3
             this.button1 = new System.Windows.Forms.Button();
             this.button_fill_pic = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button_take_border = new System.Windows.Forms.Button();
+            this.button_clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,11 +116,34 @@ namespace task3
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button_take_border
+            // 
+            this.button_take_border.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_take_border.Location = new System.Drawing.Point(747, 364);
+            this.button_take_border.Name = "button_take_border";
+            this.button_take_border.Size = new System.Drawing.Size(143, 63);
+            this.button_take_border.TabIndex = 7;
+            this.button_take_border.Text = "Выбрать границу ";
+            this.button_take_border.UseVisualStyleBackColor = true;
+            this.button_take_border.Click += new System.EventHandler(this.button_take_border_Click);
+            // 
+            // button_clear
+            // 
+            this.button_clear.Location = new System.Drawing.Point(747, 456);
+            this.button_clear.Name = "button_clear";
+            this.button_clear.Size = new System.Drawing.Size(143, 43);
+            this.button_clear.TabIndex = 8;
+            this.button_clear.Text = "Очистить";
+            this.button_clear.UseVisualStyleBackColor = true;
+            this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 511);
+            this.Controls.Add(this.button_clear);
+            this.Controls.Add(this.button_take_border);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button_fill_pic);
             this.Controls.Add(this.button1);
@@ -143,6 +168,8 @@ namespace task3
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button_fill_pic;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_take_border;
+        private System.Windows.Forms.Button button_clear;
     }
 }
 
