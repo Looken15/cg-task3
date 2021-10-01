@@ -10,3 +10,16 @@ C:\Users\Tema-\Desktop\Универ\4.1\КГ\task3\obj\Debug\task3.exe
 C:\Users\Tema-\Desktop\Универ\4.1\КГ\task3\obj\Debug\task3.pdb
 C:\Users\Tema-\Desktop\Универ\4.1\КГ\task3\obj\Debug\task3.main_form.resources
 C:\Users\Tema-\Desktop\Универ\4.1\КГ\task3\obj\Debug\task3.Form2.resources
+C:\Users\barakuda\Source\Repos\cg-task3\bin\Debug\task3.exe.config
+C:\Users\barakuda\Source\Repos\cg-task3\bin\Debug\task3.exe
+C:\Users\barakuda\Source\Repos\cg-task3\bin\Debug\task3.pdb
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.csproj.AssemblyReference.cache
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.Form1.resources
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.Form2.resources
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.main_form.resources
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.Properties.Resources.resources
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.csproj.GenerateResource.cache
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.csproj.CoreCompileInputs.cache
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.exe
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.pdb
+C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.Form3.resources
