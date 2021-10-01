@@ -24,8 +24,8 @@ namespace task3
         Point prev_pos;
         Color init_color = Color.FromArgb(255, 255, 255);
         Color fill_color = Color.FromArgb(255, 0, 0);
-        Color line_color = Color.FromArgb(0,0,0);
-        Color border_color = Color.FromArgb(0, 255, 0);
+        Color line_color = Color.FromArgb(0, 0, 0);
+        Color border_color = Color.FromArgb(255, 255, 0);
         Image fill_image;
         Random rand = new Random();
         Graphics gr;
@@ -65,7 +65,7 @@ namespace task3
                 {
                     if (b1 && b2)
                         break;
-                    if ((x1 == 0||b.GetPixel(x1, p.Y) != back_color) && !b1)
+                    if ((x1 == 0 || b.GetPixel(x1, p.Y) != back_color) && !b1)
                     {
                         b1 = true;
                         x1++;
@@ -81,7 +81,7 @@ namespace task3
                         x2++;
                 }
                 int y = p.Y;
-                for (int i = x1; i < x2+1; ++i)
+                for (int i = x1; i < x2 + 1; ++i)
                 {
                     if (button_fill.Enabled)
                         b.SetPixel(i, y, fill_bitmap.GetPixel(i % fill_bitmap.Width, y % fill_bitmap.Height));
@@ -89,11 +89,11 @@ namespace task3
                         b.SetPixel(i, y, fill_color);
                     if (y > 0)
                         q.Enqueue(new Point(i, y - 1));
-                    if (y < b.Height-1)
+                    if (y < b.Height - 1)
                         q.Enqueue(new Point(i, y + 1));
                 }
 
-                
+
             }
             pictureBox1.Image = b;
             gr = Graphics.FromImage(pictureBox1.Image);
@@ -236,67 +236,71 @@ namespace task3
                 if (k == 2)
                     break;
                 lst.Add(new Point(x, y));
-                if (bmp.GetPixel(x-1,y) != init_color && bmp.GetPixel(x - 1, y) != clr)
+                pictureBox1.Image = bmp;
+                pictureBox1.Refresh();
+                bmp.SetPixel(x, y, border_color);
+
+                if (bmp.GetPixel(x - 1, y) != init_color /*&& bmp.GetPixel(x - 1, y) != clr*/)
                 {
-                    if( bmp.GetPixel(x,y-1) == clr && !lst.Contains(new Point(x,y-1)))
+                    if (bmp.GetPixel(x, y - 1) == clr && !lst.Contains(new Point(x, y - 1)))
                     {
                         y--;
                         continue;
                     }
-                    if (bmp.GetPixel(x-1, y - 1) == clr && !lst.Contains(new Point(x-1, y - 1)))
+                    if (bmp.GetPixel(x - 1, y - 1) == clr && !lst.Contains(new Point(x - 1, y - 1)))
                     {
                         y--; x--;
                         continue;
                     }
-                    if (bmp.GetPixel(x - 1, y) == clr && !lst.Contains(new Point(x-1, y)))
+                    if (bmp.GetPixel(x - 1, y) == clr && !lst.Contains(new Point(x - 1, y)))
                     {
                         x--;
                         continue;
                     }
-                    if (bmp.GetPixel(x - 1, y+1) == clr && !lst.Contains(new Point(x-1, y + 1)))
+                    if (bmp.GetPixel(x - 1, y + 1) == clr && !lst.Contains(new Point(x - 1, y + 1)))
                     {
                         x--; y++;
                         continue;
                     }
-                    if (bmp.GetPixel(x , y+1) == clr && !lst.Contains(new Point(x, y + 1)))
+                    if (bmp.GetPixel(x, y + 1) == clr && !lst.Contains(new Point(x, y + 1)))
                     {
                         y++;
                         continue;
                     }
-                    if (bmp.GetPixel(x+1, y + 1) == clr && !lst.Contains(new Point(x+1, y + 1)))
+                    if (bmp.GetPixel(x + 1, y + 1) == clr && !lst.Contains(new Point(x + 1, y + 1)))
                     {
                         y++; x++;
                         continue;
                     }
-                    if (bmp.GetPixel(x+1, y) == clr && !lst.Contains(new Point(x+1, y )))
+                    if (bmp.GetPixel(x + 1, y) == clr && !lst.Contains(new Point(x + 1, y)))
                     {
                         x++;
                         continue;
                     }
-                    if (bmp.GetPixel(x+1, y-1) == clr && !lst.Contains(new Point(x+1, y - 1)))
+                    if (bmp.GetPixel(x + 1, y - 1) == clr && !lst.Contains(new Point(x + 1, y - 1)))
                     {
                         y--; x++;
                         continue;
                     }
                 }
-                if (bmp.GetPixel(x + 1, y) != init_color && bmp.GetPixel(x + 1, y) != clr)
+                if (bmp.GetPixel(x + 1, y) != init_color /*&& bmp.GetPixel(x + 1, y) != clr*/)
                 {
                     if (bmp.GetPixel(x, y + 1) == clr && !lst.Contains(new Point(x, y + 1)))
                     {
                         y++;
                         continue;
                     }
-                    if (bmp.GetPixel(x + 1, y + 1) == clr && !lst.Contains(new Point(x+1, y + 1)))
+                    if (bmp.GetPixel(x + 1, y + 1) == clr && !lst.Contains(new Point(x + 1, y + 1)))
                     {
                         y++; x++;
                         continue;
                     }
-                    if (bmp.GetPixel(x +1, y) == clr && !lst.Contains(new Point(x+1, y )))
+                    if (bmp.GetPixel(x + 1, y) == clr && !lst.Contains(new Point(x + 1, y)))
                     {
                         x++;
                         continue;
                     }
-                    if (bmp.GetPixel(x + 1, y - 1) == clr && !lst.Contains(new Point(x+1, y - 1)))
+                    if (bmp.GetPixel(x + 1, y - 1) == clr && !lst.Contains(new Point(x + 1, y - 1)))
                     {
                         x++; y--;
                         continue;
@@ -306,103 +310,103 @@ namespace task3
                         y--;
                         continue;
                     }
-                    if (bmp.GetPixel(x - 1, y - 1) == clr && !lst.Contains(new Point(x-1, y - 1)))
+                    if (bmp.GetPixel(x - 1, y - 1) == clr && !lst.Contains(new Point(x - 1, y - 1)))
                     {
                         y--; x--;
                         continue;
                     }
-                    if (bmp.GetPixel(x - 1, y) == clr && !lst.Contains(new Point(x-1, y )))
+                    if (bmp.GetPixel(x - 1, y) == clr && !lst.Contains(new Point(x - 1, y)))
                     {
                         x--;
                         continue;
                     }
-                    if (bmp.GetPixel(x - 1, y + 1) == clr && !lst.Contains(new Point(x-1, y )))
+                    if (bmp.GetPixel(x - 1, y + 1) == clr && !lst.Contains(new Point(x - 1, y)))
                     {
                         y++; x--;
                         continue;
                     }
                 }
-                if (bmp.GetPixel(x, y-1) != init_color && bmp.GetPixel(x , y-1) != clr)
+                if (bmp.GetPixel(x, y - 1) != init_color /*&& bmp.GetPixel(x , y-1) != clr*/)
                 {
-                    if (bmp.GetPixel(x+1, y) == clr && !lst.Contains(new Point(x+1, y )))
+                    if (bmp.GetPixel(x + 1, y) == clr && !lst.Contains(new Point(x + 1, y)))
                     {
                         x++;
                         continue;
                     }
-                    if (bmp.GetPixel(x + 1, y - 1) == clr && !lst.Contains(new Point(x+1, y - 1)))
+                    if (bmp.GetPixel(x + 1, y - 1) == clr && !lst.Contains(new Point(x + 1, y - 1)))
                     {
                         y--; x++;
                         continue;
                     }
-                    if (bmp.GetPixel(x, y-1) == clr && !lst.Contains(new Point(x, y - 1)))
+                    if (bmp.GetPixel(x, y - 1) == clr && !lst.Contains(new Point(x, y - 1)))
                     {
                         y--;
                         continue;
                     }
-                    if (bmp.GetPixel(x -1, y - 1) == clr && !lst.Contains(new Point(x-1, y - 1)))
+                    if (bmp.GetPixel(x - 1, y - 1) == clr && !lst.Contains(new Point(x - 1, y - 1)))
                     {
                         x--; y--;
                         continue;
                     }
-                    if (bmp.GetPixel(x-1, y ) == clr && !lst.Contains(new Point(x-1, y )))
+                    if (bmp.GetPixel(x - 1, y) == clr && !lst.Contains(new Point(x - 1, y)))
                     {
                         x--;
                         continue;
                     }
-                    if (bmp.GetPixel(x - 1, y + 1) == clr && !lst.Contains(new Point(x-1, y + 1)))
+                    if (bmp.GetPixel(x - 1, y + 1) == clr && !lst.Contains(new Point(x - 1, y + 1)))
                     {
                         y++; x--;
                         continue;
                     }
-                    if (bmp.GetPixel(x, y+1) == clr && !lst.Contains(new Point(x, y + 1)))
+                    if (bmp.GetPixel(x, y + 1) == clr && !lst.Contains(new Point(x, y + 1)))
                     {
                         y++;
                         continue;
                     }
-                    if (bmp.GetPixel(x + 1, y + 1) == clr && !lst.Contains(new Point(x+1, y + 1)))
+                    if (bmp.GetPixel(x + 1, y + 1) == clr && !lst.Contains(new Point(x + 1, y + 1)))
                     {
                         y++; x++;
                         continue;
                     }
                 }
-                if (bmp.GetPixel(x, y+1) != init_color && bmp.GetPixel(x , y+1) != clr)
+                if (bmp.GetPixel(x, y + 1) != init_color /*&& bmp.GetPixel(x , y+1) != clr*/)
                 {
-                    if (bmp.GetPixel(x-1, y) == clr && !lst.Contains(new Point(x-1, y )))
+                    if (bmp.GetPixel(x - 1, y) == clr && !lst.Contains(new Point(x - 1, y)))
                     {
                         x--;
                         continue;
                     }
-                    if (bmp.GetPixel(x - 1, y + 1) == clr && !lst.Contains(new Point(x - 1, y+1)))
+                    if (bmp.GetPixel(x - 1, y + 1) == clr && !lst.Contains(new Point(x - 1, y + 1)))
                     {
                         y++; x--;
                         continue;
                     }
-                    if (bmp.GetPixel(x , y+1) == clr && !lst.Contains(new Point(x , y+1)))
+                    if (bmp.GetPixel(x, y + 1) == clr && !lst.Contains(new Point(x, y + 1)))
                     {
                         y++;
                         continue;
                     }
-                    if (bmp.GetPixel(x + 1, y + 1) == clr && !lst.Contains(new Point(x + 1, y+1)))
+                    if (bmp.GetPixel(x + 1, y + 1) == clr && !lst.Contains(new Point(x + 1, y + 1)))
                     {
                         x++; y++;
                         continue;
                     }
-                    if (bmp.GetPixel(x+1, y) == clr && !lst.Contains(new Point(x + 1, y)))
+                    if (bmp.GetPixel(x + 1, y) == clr && !lst.Contains(new Point(x + 1, y)))
                     {
                         x++;
                         continue;
                     }
-                    if (bmp.GetPixel(x + 1, y - 1) == clr && !lst.Contains(new Point(x + 1, y-1)))
+                    if (bmp.GetPixel(x + 1, y - 1) == clr && !lst.Contains(new Point(x + 1, y - 1)))
                     {
                         y--; x++;
                         continue;
                     }
-                    if (bmp.GetPixel(x, y-1) == clr && !lst.Contains(new Point(x , y-1)))
+                    if (bmp.GetPixel(x, y - 1) == clr && !lst.Contains(new Point(x, y - 1)))
                     {
                         y--;
                         continue;
                     }
-                    if (bmp.GetPixel(x - 1, y - 1) == clr && !lst.Contains(new Point(x - 1, y-1)))
+                    if (bmp.GetPixel(x - 1, y - 1) == clr && !lst.Contains(new Point(x - 1, y - 1)))
                     {
                         y--; x--;
                         continue;

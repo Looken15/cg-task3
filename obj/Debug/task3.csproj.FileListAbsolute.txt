@@ -23,3 +23,4 @@ C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.csproj.CoreCompileInputs
 C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.exe
 C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.pdb
 C:\Users\barakuda\Source\Repos\cg-task3\obj\Debug\task3.Form3.resources
+C:\Users\Tema-\Desktop\Универ\4.1\КГ\task3\obj\Debug\task3.Form3.resources
