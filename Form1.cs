@@ -33,17 +33,37 @@ namespace task3
         private void Form1_Load(object sender, EventArgs e)
         {
             var bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            //var bitmap = new Bitmap(Image.FromFile("temp.png"));
             gr = Graphics.FromImage(bitmap);
             gr.Clear(init_color);
             fill_image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = bitmap;
             pen = new Pen(line_color, 1.0f);
-            //fill_image = Image.FromFile("321.jpg");
+            DrawBox();
+        }
+
+        private void DrawBox()
+        {
+            var b = new Bitmap(pictureBox1.Image);
+
+            for (int i = 100; i < 500; ++i)
+            {
+                b.SetPixel(i, 100, Color.Black);
+                b.SetPixel(i, 500, Color.Black);
+            }
+            for (int j = 100; j < 500; ++j)
+            {
+                b.SetPixel(100, j, Color.Black);
+                b.SetPixel(500, j, Color.Black);
+            }
+
+            pictureBox1.Image = b;
         }
 
         void fill_line_alg(Point point)
         {
-            var fill_bitmap = new Bitmap(fill_image);
+            var fill_bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            var gr_back = Graphics.FromImage(fill_bitmap);
             var b = new Bitmap(pictureBox1.Image);
             var q = new Queue<Point>();
             var back_color = b.GetPixel(point.X, point.Y);
@@ -81,10 +101,14 @@ namespace task3
                         x2++;
                 }
                 int y = p.Y;
+                if (button_fill.Enabled)
+                    gr_back.DrawImage(fill_image, point);
                 for (int i = x1; i < x2 + 1; ++i)
                 {
                     if (button_fill.Enabled)
+                    {
                         b.SetPixel(i, y, fill_bitmap.GetPixel(i % fill_bitmap.Width, y % fill_bitmap.Height));
+                    }
                     else
                         b.SetPixel(i, y, fill_color);
                     if (y > 0)
@@ -95,6 +119,7 @@ namespace task3
 
 
             }
+            gr_back.Clear(Color.White);
             pictureBox1.Image = b;
             gr = Graphics.FromImage(pictureBox1.Image);
         }
@@ -412,8 +437,14 @@ namespace task3
                         continue;
                     }
                 }
+
+                bmp.SetPixel(x, y, Color.Green);
+                pictureBox1.Image = bmp;
+                pictureBox1.Refresh();
                 break;
             }
+
+
 
             foreach (var p in lst)
                 bmp.SetPixel(p.X, p.Y, border_color);
@@ -426,6 +457,11 @@ namespace task3
         {
             gr.Clear(init_color);
             pictureBox1.Refresh();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            pictureBox1.Image.Save("f1.png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 }
