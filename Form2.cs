@@ -25,7 +25,7 @@ namespace task3
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -79,9 +79,10 @@ namespace task3
             int error = dx / 2;
             int ystep = (y1 < y2) ? 1 : -1;
             int y = y1;
+            var b = new Bitmap(pictureBox1.Image);
             for (int x = x1; x <= x2; x++)
             {
-                DrawPoint(g, line_color, change, x, y, 255);
+                DrawPoint(b, line_color, change, x, y, 255);
                 error -= dy;
                 if (error < 0)
                 {
@@ -89,6 +90,7 @@ namespace task3
                     error += dx;
                 }
             }
+            pictureBox1.Image = b;
         }
 
         void Wu(Point p1, Point p2)
@@ -112,28 +114,33 @@ namespace task3
                 (y1, y2) = (y2, y1);
             }
 
-            DrawPoint(g, line_color, change, x1, y1, 255); 
-            DrawPoint(g, line_color, change, x2, y2, 255); 
+            var b = new Bitmap(pictureBox1.Image);
+            DrawPoint(b, line_color, change, x1, y1, 255); 
+            DrawPoint(b, line_color, change, x2, y2, 255);
+            
             float dx = x2 - x1;
             float dy = y2 - y1;
             float gradient = dy / dx;
             float y = y1 + gradient;
+
             for (var x = x1 + 1; x <= x2 - 1; x++)
             {
-                DrawPoint(g, line_color, change, x, (int)y, (int)(255 * (1 - (y - (int)y))));
-                DrawPoint(g, line_color, change, x, (int)y + 1, (int)(255 * (y - (int)y)));
+                DrawPoint(b, line_color, change, x, (int)y, (int)(255 * (1 - (y - (int)y))));
+                DrawPoint(b, line_color, change, x, (int)y + 1, (int)(255 * (y - (int)y)));
                 y += gradient;
             }
+            pictureBox1.Image = b;
         }
 
-        private static void DrawPoint(Graphics g, Color col, bool change, int x, int y, int alpha)
+        static void DrawPoint(Bitmap b, Color col, bool change, int x, int y, int alpha)
         {
-
+            
             if (change)
             {
                 (x, y) = (y, x);
             }
-            g.FillRectangle(new SolidBrush(Color.FromArgb(alpha, col)), x, y, thick, thick);
+            b.SetPixel(x, y, Color.FromArgb(alpha, col));
+            //g.FillRectangle(new SolidBrush(Color.FromArgb(alpha, col)), x, y, thick, thick);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -152,6 +159,11 @@ namespace task3
         {
             if (!int.TryParse(textBox1.Text, out thick))
                 thick = 1;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image.Save("new.png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 }

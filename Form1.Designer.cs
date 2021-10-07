@@ -38,15 +38,16 @@ namespace task3
             this.button3 = new System.Windows.Forms.Button();
             this.button_take_border = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(-4, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(-5, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(734, 509);
+            this.pictureBox1.Size = new System.Drawing.Size(979, 626);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -59,10 +60,10 @@ namespace task3
             // 
             this.button_draw.Enabled = false;
             this.button_draw.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_draw.Location = new System.Drawing.Point(747, 46);
-            this.button_draw.Margin = new System.Windows.Forms.Padding(2);
+            this.button_draw.Location = new System.Drawing.Point(996, 57);
+            this.button_draw.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_draw.Name = "button_draw";
-            this.button_draw.Size = new System.Drawing.Size(146, 37);
+            this.button_draw.Size = new System.Drawing.Size(195, 46);
             this.button_draw.TabIndex = 1;
             this.button_draw.Text = "Рисование";
             this.button_draw.UseVisualStyleBackColor = true;
@@ -71,10 +72,10 @@ namespace task3
             // button_fill
             // 
             this.button_fill.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_fill.Location = new System.Drawing.Point(747, 106);
-            this.button_fill.Margin = new System.Windows.Forms.Padding(2);
+            this.button_fill.Location = new System.Drawing.Point(996, 130);
+            this.button_fill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_fill.Name = "button_fill";
-            this.button_fill.Size = new System.Drawing.Size(146, 57);
+            this.button_fill.Size = new System.Drawing.Size(195, 70);
             this.button_fill.TabIndex = 2;
             this.button_fill.Text = "Заливка цветом";
             this.button_fill.UseVisualStyleBackColor = true;
@@ -83,10 +84,10 @@ namespace task3
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(747, 167);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(996, 206);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 38);
+            this.button1.Size = new System.Drawing.Size(195, 47);
             this.button1.TabIndex = 3;
             this.button1.Text = "Выбор цвета";
             this.button1.UseVisualStyleBackColor = true;
@@ -95,10 +96,10 @@ namespace task3
             // button_fill_pic
             // 
             this.button_fill_pic.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_fill_pic.Location = new System.Drawing.Point(747, 221);
-            this.button_fill_pic.Margin = new System.Windows.Forms.Padding(2);
+            this.button_fill_pic.Location = new System.Drawing.Point(996, 272);
+            this.button_fill_pic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_fill_pic.Name = "button_fill_pic";
-            this.button_fill_pic.Size = new System.Drawing.Size(146, 57);
+            this.button_fill_pic.Size = new System.Drawing.Size(195, 70);
             this.button_fill_pic.TabIndex = 4;
             this.button_fill_pic.Text = "Заливка картинкой";
             this.button_fill_pic.UseVisualStyleBackColor = true;
@@ -107,10 +108,10 @@ namespace task3
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(747, 282);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(996, 347);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(146, 56);
+            this.button3.Size = new System.Drawing.Size(195, 69);
             this.button3.TabIndex = 5;
             this.button3.Text = "Выбор картинки";
             this.button3.UseVisualStyleBackColor = true;
@@ -119,9 +120,10 @@ namespace task3
             // button_take_border
             // 
             this.button_take_border.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_take_border.Location = new System.Drawing.Point(747, 364);
+            this.button_take_border.Location = new System.Drawing.Point(996, 448);
+            this.button_take_border.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_take_border.Name = "button_take_border";
-            this.button_take_border.Size = new System.Drawing.Size(143, 63);
+            this.button_take_border.Size = new System.Drawing.Size(191, 78);
             this.button_take_border.TabIndex = 7;
             this.button_take_border.Text = "Выбрать границу ";
             this.button_take_border.UseVisualStyleBackColor = true;
@@ -129,19 +131,31 @@ namespace task3
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(747, 456);
+            this.button_clear.Location = new System.Drawing.Point(996, 561);
+            this.button_clear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(143, 43);
+            this.button_clear.Size = new System.Drawing.Size(191, 53);
             this.button_clear.TabIndex = 8;
             this.button_clear.Text = "Очистить";
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1057, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 39);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "save";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 511);
+            this.ClientSize = new System.Drawing.Size(1203, 629);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button_clear);
             this.Controls.Add(this.button_take_border);
             this.Controls.Add(this.button3);
@@ -150,7 +164,7 @@ namespace task3
             this.Controls.Add(this.button_fill);
             this.Controls.Add(this.button_draw);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -170,6 +184,7 @@ namespace task3
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button_take_border;
         private System.Windows.Forms.Button button_clear;
+        private System.Windows.Forms.Button button2;
     }
 }
 
