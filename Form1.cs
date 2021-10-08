@@ -25,7 +25,7 @@ namespace task3
         Color init_color = Color.FromArgb(255, 255, 255);
         Color fill_color = Color.FromArgb(255, 0, 0);
         Color line_color = Color.FromArgb(0, 0, 0);
-        Color border_color = Color.FromArgb(255, 255, 0);
+        Color border_color = Color.FromArgb(0, 255, 0);
         Image fill_image;
         Random rand = new Random();
         Graphics gr;
@@ -57,6 +57,10 @@ namespace task3
                 b.SetPixel(500, j, Color.Black);
             }
 
+
+            b.SetPixel(100, 99,line_color);
+            b.SetPixel(101, 99, line_color);
+            b.SetPixel(101, 98, line_color);
             pictureBox1.Image = b;
         }
 
@@ -136,7 +140,8 @@ namespace task3
             if (!button_fill.Enabled || !button_fill_pic.Enabled)
                 fill_line_alg(e.Location);
             if (!button_take_border.Enabled)
-                track_border_alg(e.X, e.Y);
+                track_border_new(e.Location);
+            //track_border_alg(e.X, e.Y);
         }
 
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
@@ -451,6 +456,176 @@ namespace task3
 
             pictureBox1.Image = bmp;
             gr = Graphics.FromImage(pictureBox1.Image);
+        }
+
+        class PointNode
+        {
+            public PointNode next;
+            public Point p;
+
+            public PointNode(int x, int y, PointNode next)
+            {
+                p = new Point(x, y);
+                this.next = next;
+            }
+
+            public PointNode(PointNode nd)
+            {
+                p = new Point(nd.p.X, nd.p.Y);
+                next = nd.next;
+            }
+        }
+
+        private (PointNode, PointNode, PointNode, PointNode) InitNodeCycle()
+        {
+            var p = new PointNode(0,1,null);
+            var res = new List<PointNode>(); res.Add(p);
+            var p1 = p;
+            var p2 = new PointNode(1,1,null);
+            p1.next = p2;
+            p1 = p2;
+
+            p2 = new PointNode(1, 0, null);
+            p1.next = p2;
+            p1 = p2;
+            res.Add(p1);
+
+            p2 = new PointNode(1, -1, null);
+            p1.next = p2;
+            p1 = p2;
+
+            p2 = new PointNode(0, -1, null);
+            p1.next = p2;
+            p1 = p2;
+            res.Add(p1);
+
+            p2 = new PointNode(-1, -1, null);
+            p1.next = p2;
+            p1 = p2;
+
+            p2 = new PointNode(-1, 0, null);
+            p1.next = p2;
+            p1 = p2;
+            res.Add(p1);
+
+            p2 = new PointNode(-1, 1, p);
+            p1.next = p2;
+
+            return (res[0], res[1], res[2], res[3]);
+        }
+
+        private Point FindNextPoint(Point cur, Point prev, PointNode cycle_start, Bitmap bmp, Color fill_clr)
+        {
+            var cycle = new PointNode(cycle_start);
+            for (int i = 0; i< 8; i++)
+            {
+                var x = cur.X + cycle.p.X;
+                var y = cur.Y + cycle.p.Y;
+                if (bmp.GetPixel(x, y) == line_color && new Point(x, y) != prev)
+                    if (prev.X != -1 || y < cur.Y)
+                        if (is_border_pixel(fill_clr,bmp,x,y))
+                            return new Point(x, y);
+                cycle = cycle.next;
+            }
+
+            //throw new Exception("Не найден пиксель границы!");
+            return new Point(-1, -1);
+        }
+
+        private bool is_border_pixel(Color fill_clr, Bitmap bmp, int x, int y)
+        {
+            if (bmp.GetPixel(x - 1, y) == fill_clr && bmp.GetPixel(x + 1, y) != fill_clr)
+                return true;
+            if (bmp.GetPixel(x - 1, y) != fill_clr && bmp.GetPixel(x + 1, y) == fill_clr)
+                return true;
+            if (bmp.GetPixel(x, y-1) != fill_clr && bmp.GetPixel(x, y+1) == fill_clr)
+                return true;
+            if (bmp.GetPixel(x, y + 1) != fill_clr && bmp.GetPixel(x, y - 1) == fill_clr)
+                return true;
+            return false;
+        }
+
+        private void track_border_new(Point click)
+        {
+            //var bmp = new Bitmap(pictureBox1.Image);
+            Bitmap bmp = (Bitmap)pictureBox1.Image;
+            var fill_clr = bmp.GetPixel(click.X, click.Y);
+            (var fill_right, var fill_up, var fill_left, var fill_down) = InitNodeCycle();
+            var lst = new List<Point>();
+
+            var x = click.X; var y = click.Y;
+            while (true)
+            {
+                if (x == 0)
+                    return;
+                if (bmp.GetPixel(x, y) == line_color && bmp.GetPixel(x-1, y) != line_color && bmp.GetPixel(x + 1, y) == fill_clr)
+                    break;
+                x--;
+            }
+            if (bmp.GetPixel(x, y) != line_color)
+                return;
+
+            var start = new Point(x, y); int count = 0;
+            var cur = new Point(x, y); var prev = new Point(-1, -1);
+            while (true)
+            {
+                if (cur == start && prev.X != -1)
+                {
+                    bmp.SetPixel(cur.X, cur.Y, border_color);
+                    pictureBox1.Refresh();
+                    break;
+                }
+
+                if (cur.Y == 101)
+                    count++;
+                if (cur.X == 499)
+                    count++;
+                if (cur != start)
+                    bmp.SetPixel(cur.X, cur.Y, border_color);
+                pictureBox1.Refresh();
+
+                Point next; PointNode pn;
+                if (bmp.GetPixel(cur.X + 1, cur.Y) == fill_clr)
+                    pn = fill_right.next;
+                else if (bmp.GetPixel(cur.X, cur.Y - 1) == fill_clr)
+                    pn = fill_up.next;
+                else if (bmp.GetPixel(cur.X - 1, cur.Y) == fill_clr)
+                    pn = fill_left.next;
+                else if (bmp.GetPixel(cur.X, cur.Y + 1) == fill_clr)
+                    pn = fill_down.next;
+                else
+                    throw new Exception("Не найдена сторона заливки!");
+
+                //for (int i = 0; i < count; i++)
+                //    pn = pn.next;
+
+                next = FindNextPoint(cur, prev, pn, bmp, fill_clr);
+                if (next.X == -1)
+                    break;
+                /*
+                if (next.X == -1 )
+                {
+                    if (count == 7)
+                        throw new Exception("алгоритм зашёл не туда!");
+                    if (count == 0)
+                    {
+                        bmp.SetPixel(cur.X, cur.Y, line_color);
+                        lst.RemoveAt(lst.Count - 1);
+                        cur = prev;
+                        prev = lst[lst.Count - 1];
+                    }
+                    count++;
+                    continue;
+                }
+
+                count = 0;*/
+                lst.Add(cur);
+                (cur, prev) = (next, cur);
+            }
+
+            //foreach (var p in lst)
+            //    bmp.SetPixel(p.X, p.Y, border_color);
+            //pictureBox1.Refresh();
         }
 
         private void button_clear_Click(object sender, EventArgs e)
